@@ -9,7 +9,8 @@ const path = require('path')
 require('./src/config/passport')
 
 // Set up default mongoose connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoDB = process.env.MONGODB_URI_RAIL || process.env.MONGODB_URI;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
 const db = mongoose.connection;
@@ -29,5 +30,5 @@ app.use('/api/users', userRoute);
 
 
 app.listen(process.env.PORT || 5000, () => {
-    console.log('Server running on port 5000!')task
+    console.log('Server running on port 5000!')
 })
